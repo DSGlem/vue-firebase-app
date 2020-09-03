@@ -1,16 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Test from "../Test";
-
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "history",
   routes: [
     {
-      path: "/v3",
-      component: Test
+      path: "/",
+      component: () => import("../views/SignIn/SignIn.vue")
+    },
+    {
+      path: "/addCart",
+      component: () => import("../views/SignIn/SignIn.vue")
+    },
+    {
+      path: "/SignIn",
+      component: () => import("../views/SignIn/SignIn.vue")
+    },
+    {
+      path: "/SignUp",
+      component: () => import("../views/SignIn/SignIn.vue")
     }
   ]
 });
