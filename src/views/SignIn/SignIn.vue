@@ -1,5 +1,48 @@
 <template>
   <div class="container d-flex flex-column  justify-content-center">
+    <div class="row">
+      <div class="col-4 offset-4">
+        <div class="">
+          <h4 class="text-center">Member Login</h4>
+        </div>
+        <div class="">
+          <form action="/examples/actions/confirmation.php" method="post">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="Username"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg btn-block login-btn"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="">
+          <a href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container d-flex flex-column  justify-content-center">
     <h1 class="text-center">Sign in</h1>
     <div class="row">
       <div class="col-4 offset-4">
@@ -38,7 +81,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
