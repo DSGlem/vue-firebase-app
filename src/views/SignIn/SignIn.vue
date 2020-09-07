@@ -1,6 +1,6 @@
 <template>
   <div class="container d-flex flex-column  justify-content-center">
-    <h1 class="text-center">Account SignIn</h1>
+    <h1 class="text-center">Sign in</h1>
     <div class="row">
       <div class="col-4 offset-4">
         <form class="">
