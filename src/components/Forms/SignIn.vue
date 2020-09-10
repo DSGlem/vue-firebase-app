@@ -9,7 +9,8 @@
         class="form-control"
         name="email"
         placeholder="Email"
-        required="required"
+        required
+        v-model="email"
       />
     </div>
     <div class="form-group">
@@ -18,11 +19,16 @@
         class="form-control"
         name="password"
         placeholder="Password"
-        required="required"
+        required
+        v-model="password"
       />
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block login-btn"
+        @click="SignIn"
+      >
         Sign In
       </button>
     </div>
@@ -33,5 +39,28 @@
 </template>
 
 <script>
-export default {};
+import firebase from "firebase";
+export default {
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    SignIn() {
+      console.log("SignIn");
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(result => {
+          // Sign-out successful.
+          console.log("1");
+          console.log(result.user);
+        });
+      console.log("SignIn end");
+    }
+  }
+};
 </script>

@@ -9,7 +9,8 @@
         class="form-control"
         name="email"
         placeholder="Email"
-        required="required"
+        required
+        v-model="email"
       />
     </div>
     <div class="form-group">
@@ -18,7 +19,8 @@
         class="form-control"
         name="password"
         placeholder="Password"
-        required="required"
+        required
+        v-model="password"
       />
     </div>
     <div class="form-group">
@@ -27,11 +29,16 @@
         class="form-control"
         name="password-confirm"
         placeholder="Confirm password"
-        required="required"
+        required
+        v-model="passwordConfirm"
       />
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block login-btn"
+        @click="SignUp"
+      >
         Sign Up
       </button>
     </div>
@@ -42,5 +49,31 @@
 </template>
 
 <script>
-export default {};
+import firebase from "firebase";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      passwordConfirm: ""
+    };
+  },
+  methods: {
+    SignUp() {
+      console.log(this.email);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert(user);
+            console.log(user.data);
+          },
+          error => {
+            alert(error);
+          }
+        );
+    }
+  }
+};
 </script>
