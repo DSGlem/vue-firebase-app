@@ -1,5 +1,5 @@
 <template>
-  <form class="bg-white px-4 py-4 rounded-lg">
+  <form class="bg-white px-4 py-4 rounded-lg" @submit.prevent="signIn">
     <div class="form-group">
       <h4 class="text-center">Sign In</h4>
     </div>
@@ -24,11 +24,7 @@
       />
     </div>
     <div class="form-group">
-      <button
-        type="submit"
-        class="btn btn-primary btn-lg btn-block login-btn"
-        @click="SignIn"
-      >
+      <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
         Sign In
       </button>
     </div>
@@ -39,7 +35,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
 export default {
   data() {
     return {
@@ -48,18 +43,14 @@ export default {
     };
   },
   methods: {
-    SignIn() {
-      console.log("SignIn");
+    async signIn() {
+      const formData = {
+        email: this.email,
+        password: this.password
+      };
+      console.log(formData);
 
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(result => {
-          // Sign-out successful.
-          console.log("1");
-          console.log(result.user);
-        });
-      console.log("SignIn end");
+      await this.$store.dispatch("signIn", formData);
     }
   }
 };
