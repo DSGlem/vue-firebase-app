@@ -7,6 +7,24 @@
       <input
         type="text"
         class="form-control"
+        name="password"
+        placeholder="First Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        placeholder="Last Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
         name="email"
         placeholder="Email"
         required
@@ -23,6 +41,74 @@
         v-model="password"
       />
     </div>
+    <div class="form-group">
+      <input
+        type="date"
+        class="form-control"
+        name="password"
+        placeholder="Date of Birth"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        placeholder="Country of Residence"
+        required
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        placeholder="Address"
+        required
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="password"
+        placeholder="Postcode"
+        required
+      />
+    </div>
+    <!-- <div class="form-group">
+      <input
+        type="number"
+        class="form-control"
+        name="password"
+        placeholder="Postcode"
+        required
+      />
+    </div> -->
+    <!-- <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        placeholder="Country of Residence"
+        required
+      />
+    </div> -->
+    <div class="form-group">
+      <input
+        type="tel"
+        class="form-control"
+        name="password"
+        placeholder="Phone Number"
+        required
+      />
+    </div>
+    <!-- <div class="form-group">
+      <input
+        type="checkbox"
+        class="form-control"
+        name="password"
+        required
+        v-model="password"
+      />
+    </div> -->
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
         Sign In
