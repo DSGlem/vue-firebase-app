@@ -39,19 +39,21 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
     async signIn() {
       const formData = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       console.log(formData);
 
       await this.$store.dispatch("signIn", formData);
-    }
-  }
+
+      this.$router.push("/test");
+    },
+  },
 };
 </script>
