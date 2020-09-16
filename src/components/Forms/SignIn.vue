@@ -9,7 +9,8 @@
         class="form-control"
         name="password"
         placeholder="First Name"
-        required
+        v-model.trim="firstName"
+        :class="{ invalid: !$v.firstName.validFormat }"
       />
     </div>
     <div class="form-group">
@@ -28,7 +29,8 @@
         name="email"
         placeholder="Email"
         required
-        v-model="email"
+        v-model.trim="email"
+        :class="{ invalid: $v.email.$invalid }"
       />
     </div>
     <div class="form-group">
@@ -121,12 +123,16 @@
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
 export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
+  data: () => ({
+    firstName: "",
+    email: "",
+    password: "",
+  }),
+  validations: {
+    email: { required, email },
+    firstName: { validFormat: (val) => /^[a-zA-Z]+$/.test(val) },
   },
   methods: {
     async signIn() {
@@ -143,3 +149,8 @@ export default {
   },
 };
 </script>
+<style lang="css" scoped>
+.invalid {
+  border: 1px solid red;
+}
+</style>
