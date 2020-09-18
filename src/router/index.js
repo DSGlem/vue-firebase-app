@@ -12,7 +12,7 @@ const router = new VueRouter({
     },
     {
       path: "/addCart",
-      component: () => import("../views/SignIn/SignIn.vue")
+      component: () => import("../views/Adding/AddingFilms.vue")
     },
     {
       path: "/SignIn",
@@ -20,7 +20,7 @@ const router = new VueRouter({
     },
     {
       path: "/SignUp",
-      component: () => import("../views/SignIn/SignIn.vue")
+      component: () => import("../views/SignUp/SignUp.vue")
     }
   ]
 });

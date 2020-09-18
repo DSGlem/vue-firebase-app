@@ -1,7 +1,7 @@
 <template>
-  <header class="container-fluid bg-secondary">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+  <header class="container-fluid bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <router-link class="navbar-brand" to="/">Home</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,34 +16,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <router-link class="nav-link" to="/SignIn">Sign in</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link class="nav-link" to="/SignUp">Sign up</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link disabled"
-              href="#"
-              tabindex="-1"
-              aria-disabled="true"
-              >Disabled</a
-            >
+            <router-link class="nav-link" to="/addCart">Add Cart</router-link>
           </li>
         </ul>
       </div>
     </nav>
-    <!-- <div class="row col-4 justify-content-between">
-      <router-link to="/">Main</router-link>
-      <router-link to="/SignIn">SignIn</router-link>
-      <router-link to="/SignUp">SignUp</router-link>
-      <router-link to="/addCart">Add Cart</router-link>
-    </div> -->
   </header>
 </template>
 
