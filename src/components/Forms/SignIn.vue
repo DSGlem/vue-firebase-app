@@ -1,5 +1,9 @@
 <template>
-  <form class="bg-white px-4 py-4 rounded-lg" @submit.prevent="signIn">
+  <form
+    class="bg-white px-4 py-4 rounded-lg"
+    @submit.prevent="signIn"
+    novalidate
+  >
     <div class="form-group">
       <h4 class="text-center">Sign In</h4>
     </div>
@@ -10,7 +14,10 @@
         name="firstName"
         placeholder="First Name"
         v-model.trim="$v.firstName.$model"
-        :class="{ invalid: $v.firstName.$invalid && $v.firstName.$dirty }"
+        :class="{
+          invalid: $v.firstName.$error,
+        }"
+        required
       />
     </div>
     <div class="form-group">
@@ -19,8 +26,9 @@
         class="form-control"
         name="lastName"
         placeholder="Last Name"
+        required
         v-model.trim="$v.lastName.$model"
-        :class="{ invalid: $v.lastName.$invalid && $v.lastName.$dirty }"
+        :class="{ invalid: $v.lastName.$error }"
       />
     </div>
     <div class="form-group">
@@ -30,8 +38,8 @@
         name="email"
         placeholder="Email"
         required
-        v-model.trim="$v.email"
-        :class="{ invalid: $v.email.$invalid }"
+        v-model.trim="$v.email.$model"
+        :class="{ invalid: $v.email.$error }"
       />
     </div>
     <div class="form-group">
@@ -45,7 +53,13 @@
       />
     </div>
     <div class="form-group">
-      <input type="date" class="form-control" name="password" placeholder="Date of Birth" required />
+      <input
+        type="date"
+        class="form-control"
+        name="password"
+        placeholder="Date of Birth"
+        required
+      />
     </div>
     <div class="form-group">
       <input
@@ -55,10 +69,13 @@
         placeholder="Country of Residence"
         required
       />
-      <input type="text" class="form-control" name="password" placeholder="Address" required />
-      <input type="number" class="form-control" name="password" placeholder="Postcode" required />
-    </div>
-    <!-- <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="password"
+        placeholder="Address"
+        required
+      />
       <input
         type="number"
         class="form-control"
@@ -66,18 +83,17 @@
         placeholder="Postcode"
         required
       />
-    </div>-->
-    <!-- <div class="form-group">
+    </div>
+    <div class="form-group">
       <input
-        type="text"
+        type="tel"
         class="form-control"
         name="password"
-        placeholder="Country of Residence"
+        placeholder="Phone Number"
         required
+        v-model="$v.phone.$model"
+        :class="{ invalid: $v.phone.$invalid && $v.phone.$dirty }"
       />
-    </div>-->
-    <div class="form-group">
-      <input type="tel" class="form-control" name="password" placeholder="Phone Number" required />
     </div>
     <!-- <div class="form-group">
       <input
@@ -89,7 +105,9 @@
       />
     </div>-->
     <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Sign In</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
+        Sign In
+      </button>
     </div>
     <div class="form-group">
       <a href="#">Forgot Password?</a>
@@ -99,39 +117,42 @@
 
 <script>
 import { required, email } from "vuelidate/lib/validators";
+import { validators } from "@/utils.js";
 export default {
   data: () => ({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    validators: {
-      onlyLetters: (val) => {
-        /^[a-zA-Z]+$/.test(val);
-      },
-    },
+    phone: "",
   }),
   validations: {
-    email: { required, email },
-    firstName: { validFormat: this.validators.onlyLetters },
-    lastName: { validFormat: this.validators.onlyLetters },
+    firstName: { validFormat: validators.onlyLetters, required },
+    lastName: { validFormat: validators.onlyLetters, required },
+    email: { email, required },
+    phone: { required },
+  },
+  mounted() {
+    console.log(this.$v);
   },
   methods: {
     async signIn() {
+      console.log(this.$v);
+      this.$v.$touch();
       const formData = {
         email: this.email,
         password: this.password,
       };
-      console.log(formData);
+      if (!this.$v.$invalid) {
+        await this.$store.dispatch("signIn", formData);
 
-      await this.$store.dispatch("signIn", formData);
-
-      this.$router.push("/test");
+        this.$router.push("/test");
+      }
     },
   },
 };
 </script>
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .invalid {
   border: 1px solid red;
 }

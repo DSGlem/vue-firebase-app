@@ -1,5 +1,5 @@
 export const validators = {
-    onlyLetters: (val) => {
-        return /^[a-zA-Z]+$/.test(val);
-    }
-}
+  onlyLetters: (val) => {
+    return /^[a-zA-Z]+$/.test(val);
+  },
+};
