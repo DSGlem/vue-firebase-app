@@ -7,7 +7,7 @@ export default {
         console.log("signIn");
         await firebase.auth().signInWithEmailAndPassword(email, password);
         const uid = await dispatch("getUid");
-        const user = await firebase
+        await firebase
           .database()
           .ref(`/users/${uid}`)
           .once("value")
