@@ -13,9 +13,9 @@
         class="form-control"
         name="firstName"
         placeholder="First Name"
-        v-model.trim="$v.firstName.$model"
+        v-model.trim="$v.userData.firstName.$model"
         :class="{
-          invalid: $v.firstName.$error,
+          invalid: $v.userData.firstName.$error,
         }"
         required
       />
@@ -27,8 +27,8 @@
         name="lastName"
         placeholder="Last Name"
         required
-        v-model.trim="$v.lastName.$model"
-        :class="{ invalid: $v.lastName.$error }"
+        v-model.trim="$v.userData.lastName.$model"
+        :class="{ invalid: $v.userData.lastName.$error }"
       />
     </div>
     <div class="form-group">
@@ -38,8 +38,8 @@
         name="email"
         placeholder="Email"
         required
-        v-model.trim="$v.email.$model"
-        :class="{ invalid: $v.email.$error }"
+        v-model.trim="$v.userData.email.$model"
+        :class="{ invalid: $v.userData.email.$error }"
       />
     </div>
     <div class="form-group">
@@ -49,16 +49,20 @@
         name="password"
         placeholder="Password"
         required
-        v-model="password"
+        v-model.trim="$v.userData.password.$model"
+        :class="{ invalid: $v.userData.password.$error }"
       />
     </div>
     <div class="form-group">
       <input
-        type="date"
+        type="text"
         class="form-control"
         name="password"
         placeholder="Date of Birth"
         required
+        v-mask="'####-##-##'"
+        v-model.trim="$v.userData.dateOfBirth.$model"
+        :class="{ invalid: $v.userData.dateOfBirth.$error }"
       />
     </div>
     <div class="form-group">
@@ -68,6 +72,8 @@
         name="password"
         placeholder="Country of Residence"
         required
+        v-model.trim="$v.userData.country.$model"
+        :class="{ invalid: $v.userData.country.$error }"
       />
       <input
         type="text"
@@ -75,6 +81,8 @@
         name="password"
         placeholder="Address"
         required
+        v-model.trim="$v.userData.address.$model"
+        :class="{ invalid: $v.userData.address.$error }"
       />
       <input
         type="number"
@@ -82,6 +90,8 @@
         name="password"
         placeholder="Postcode"
         required
+        v-model.trim="$v.userData.postcode.$model"
+        :class="{ invalid: $v.userData.postcode.$error }"
       />
     </div>
     <div class="form-group">
@@ -91,19 +101,10 @@
         name="password"
         placeholder="Phone Number"
         required
-        v-model="$v.phone.$model"
-        :class="{ invalid: $v.phone.$invalid && $v.phone.$dirty }"
+        v-model="$v.userData.phone.$model"
+        :class="{ invalid: $v.userData.phone.$error }"
       />
     </div>
-    <!-- <div class="form-group">
-      <input
-        type="checkbox"
-        class="form-control"
-        name="password"
-        required
-        v-model="password"
-      />
-    </div>-->
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">
         Sign In
@@ -116,35 +117,51 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { mask } from "vue-the-mask";
+import { required, email, minLength, numeric } from "vuelidate/lib/validators";
 import { validators } from "@/utils.js";
 export default {
+  directives: { mask },
   data: () => ({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phone: "",
+    userData: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      phone: "",
+      dateOfBirth: "",
+      country: "",
+      address: "",
+      postcode: "",
+    },
   }),
   validations: {
-    firstName: { validFormat: validators.onlyLetters, required },
-    lastName: { validFormat: validators.onlyLetters, required },
-    email: { email, required },
-    phone: { required },
+    userData: {
+      firstName: { validFormat: validators.onlyLetters, required },
+      lastName: { validFormat: validators.onlyLetters, required },
+      email: { email, required },
+      password: { minLength: minLength(6), required },
+      phone: { required },
+      dateOfBirth: { required },
+      country: { required },
+      address: { required },
+      postcode: { numeric, required },
+    },
   },
   mounted() {
     console.log(this.$v);
   },
   methods: {
     async signIn() {
-      console.log(this.$v);
+      // console.log(this.userData);
       this.$v.$touch();
-      const formData = {
-        email: this.email,
-        password: this.password,
-      };
+      // const formData = {
+      //   email: this.email,
+      //   password: this.password,
+      // };
       if (!this.$v.$invalid) {
-        await this.$store.dispatch("signIn", formData);
+        console.log(this.userData);
+        await this.$store.dispatch("signIn", this.userData);
 
         this.$router.push("/test");
       }
