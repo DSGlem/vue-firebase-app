@@ -7,7 +7,6 @@
       <input
         type="text"
         class="form-control"
-        name="firstName"
         placeholder="First Name"
         v-model.trim="$v.userData.firstName.$model"
         :class="{
@@ -20,7 +19,6 @@
       <input
         type="text"
         class="form-control"
-        name="lastName"
         placeholder="Last Name"
         required
         v-model.trim="$v.userData.lastName.$model"
@@ -31,7 +29,6 @@
       <input
         type="email"
         class="form-control"
-        name="email"
         placeholder="Email"
         required
         v-model.trim="$v.userData.email.$model"
@@ -42,7 +39,6 @@
       <input
         type="password"
         class="form-control"
-        name="password"
         placeholder="Password"
         required
         v-model.trim="$v.userData.password.$model"
@@ -53,7 +49,6 @@
       <input
         type="text"
         class="form-control"
-        name="password"
         placeholder="Date of Birth"
         required
         v-mask="'####-##-##'"
@@ -65,7 +60,6 @@
       <input
         type="text"
         class="form-control"
-        name="password"
         placeholder="Country of Residence"
         required
         v-model.trim="$v.userData.country.$model"
@@ -74,7 +68,6 @@
       <input
         type="text"
         class="form-control"
-        name="password"
         placeholder="Address"
         required
         v-model.trim="$v.userData.address.$model"
@@ -83,7 +76,6 @@
       <input
         type="number"
         class="form-control"
-        name="password"
         placeholder="Postcode"
         required
         v-model.trim="$v.userData.postcode.$model"
@@ -94,7 +86,6 @@
       <input
         type="tel"
         class="form-control"
-        name="password"
         placeholder="Phone Number"
         required
         v-model="$v.userData.phone.$model"
