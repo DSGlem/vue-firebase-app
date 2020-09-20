@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     async signUp() {
-      this.$v.touch();
+      this.$v.$touch();
       if (!this.$v.$invalid) {
         await this.$store.dispatch("signUp", this.userData);
         this.$router.push("/test");
