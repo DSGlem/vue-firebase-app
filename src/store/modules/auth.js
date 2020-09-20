@@ -11,19 +11,9 @@ export default {
           .database()
           .ref(`/users/${uid}`)
           .once("value")
-          .then(user => {
+          .then((user) => {
             return user.val();
           });
-        const user_info = await firebase
-          .database()
-          .ref(`/user_info/${uid}`)
-          .once("value")
-          .then(user_info => {
-            return user_info.val();
-          });
-
-        console.log(user);
-        console.log(user_info);
       } catch (e) {
         console.log(e);
         throw e;
@@ -37,10 +27,10 @@ export default {
         firstName,
         lastName,
         dateOfBirth,
-        countryOfResidence,
+        country,
         address,
         postcode,
-        phone
+        phone,
       }
     ) {
       try {
@@ -51,19 +41,15 @@ export default {
           .ref(`/users/${uid}`)
           .set({
             email: email,
-            password: password
-          });
-        await firebase
-          .database()
-          .ref(`/user_info/${uid}`)
-          .set({
+            password: password,
             first_name: firstName,
             last_name: lastName,
             dateOfBirth: dateOfBirth,
-            country_of_residence: countryOfResidence,
+            country_of_residence: country,
             address: address,
             postcode: postcode,
-            phone: phone
+            phone: phone,
+            best_score: 0,
           });
       } catch (e) {
         console.log(e);
@@ -81,6 +67,6 @@ export default {
     getUid() {
       const user = firebase.auth().currentUser;
       return user ? user.uid : null;
-    }
-  }
+    },
+  },
 };
