@@ -88,6 +88,7 @@
         class="form-control"
         placeholder="Phone Number"
         required
+        v-mask="'+31 ### ### ####'"
         v-model="$v.userData.phone.$model"
         :class="{ invalid: $v.userData.phone.$error }"
       />
