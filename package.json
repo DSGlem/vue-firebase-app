@@ -13,6 +13,7 @@
     "firebase": "^7.19.1",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3",
+    "vue-the-mask": "^0.11.1",
     "vuelidate": "^0.7.5",
     "vuex": "^3.5.1"
   },
