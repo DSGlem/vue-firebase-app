@@ -125,8 +125,8 @@ export default {
   }),
   validations: {
     userData: {
-      firstName: { validFormat: validators.onlyLetters, required },
-      lastName: { validFormat: validators.onlyLetters, required },
+      firstName: { validFormat: validators.lettersWithSpace, required },
+      lastName: { validFormat: validators.lettersWithSpace, required },
       email: { email, required },
       password: { minLength: minLength(6), required },
       phone: { required },
