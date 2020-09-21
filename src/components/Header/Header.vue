@@ -22,7 +22,9 @@
             <router-link class="nav-link" to="/SignUp">Sign up</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/test">Challenge</router-link>
+            <router-link class="nav-link" to="/challenge"
+              >Challenge</router-link
+            >
           </li>
           <li class="nav-item">
             <span class="nav-link" @click="signOut">Sign out</span>

@@ -9,10 +9,10 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../views/SignIn/SignIn.vue"),
+      component: () => import("../views/Challenge/Challenge.vue"),
     },
     {
-      path: "/test",
+      path: "/challenge",
       meta: { auth: true },
       component: () => import("../views/Challenge/Challenge.vue"),
     },
