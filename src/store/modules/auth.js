@@ -68,5 +68,14 @@ export default {
       const user = firebase.auth().currentUser;
       return user ? user.uid : null;
     },
+    async getLeadboard() {
+      return firebase
+        .database()
+        .ref("/score")
+        .once("value")
+        .then(function(snapshot) {
+          return snapshot.val();
+        });
+    },
   },
 };
