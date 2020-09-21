@@ -10,6 +10,10 @@
     </div>
     <button v-if="!challenge" @click="start">start</button>
     <button v-if="clicked" @click="reset">reset</button>
+    <audio v-show="false" ref="startAudio" controls src="./startSignal.mp3">
+      Your browser does not support the
+      <code>audio</code> element.
+    </audio>
   </div>
 </template>
 
@@ -22,6 +26,7 @@ export default {
     score: 0,
     startTime: 0,
     endTime: 0,
+    startSignal: null
   }),
   methods: {
     async saveScore() {
@@ -37,6 +42,8 @@ export default {
       return Math.round(Math.random() * max + min);
     },
     start() {
+      this.$refs.startAudio.play();
+
       const time = this.getRandomTime(1, 10) * 1000;
       console.log(time);
       setTimeout(() => {
@@ -60,8 +67,8 @@ export default {
         }
         this.clicked = true;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
