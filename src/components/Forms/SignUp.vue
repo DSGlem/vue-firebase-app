@@ -10,7 +10,7 @@
         placeholder="First Name"
         v-model.trim="$v.userData.firstName.$model"
         :class="{
-          invalid: $v.userData.firstName.$error,
+          invalid: $v.userData.firstName.$error
         }"
         required
       />
@@ -120,8 +120,8 @@ export default {
       dateOfBirth: "",
       country: "",
       address: "",
-      postcode: "",
-    },
+      postcode: ""
+    }
   }),
   validations: {
     userData: {
@@ -133,18 +133,18 @@ export default {
       dateOfBirth: { required },
       country: { required },
       address: { required },
-      postcode: { numeric, required },
-    },
+      postcode: { numeric, required }
+    }
   },
   methods: {
     async signUp() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         await this.$store.dispatch("signUp", this.userData);
-        this.$router.push("/test");
+        this.$router.push("/challenge");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

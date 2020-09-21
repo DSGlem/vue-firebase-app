@@ -46,14 +46,14 @@ export default {
   data: () => ({
     userData: {
       email: "",
-      password: "",
-    },
+      password: ""
+    }
   }),
   validations: {
     userData: {
       email: { email, required },
-      password: { minLength: minLength(6), required },
-    },
+      password: { minLength: minLength(6), required }
+    }
   },
   mounted() {
     console.log(this.$v);
@@ -63,10 +63,10 @@ export default {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         await this.$store.dispatch("signIn", this.userData);
-        this.$router.push("/test");
+        this.$router.push("/challenge");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
