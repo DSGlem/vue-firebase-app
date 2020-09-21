@@ -12,6 +12,10 @@ const router = new VueRouter({
       component: () => import("../views/Challenge/Challenge.vue"),
     },
     {
+      path: "/leadboard",
+      component: () => import("../views/Leadboard/Leadboard.vue"),
+    },
+    {
       path: "/challenge",
       meta: { auth: true },
       component: () => import("../views/Challenge/Challenge.vue"),
