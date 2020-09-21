@@ -27,6 +27,11 @@
             >
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/leadboard"
+              >Leadboard</router-link
+            >
+          </li>
+          <li class="nav-item">
             <span class="nav-link" @click="signOut">Sign out</span>
           </li>
         </ul>
@@ -44,7 +49,7 @@ export default {
       if (this.$route.path != "/SignIn") {
         this.$router.push("/SignIn");
       }
-    },
-  },
+    }
+  }
 };
 </script>
