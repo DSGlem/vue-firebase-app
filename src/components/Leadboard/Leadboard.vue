@@ -6,8 +6,12 @@
       <div>Username</div>
       <div>Score</div>
     </div>
-    <div class="leadboard__item" v-for="item in leadboard" :key="item.email">
-      <div>{{ count++ }}</div>
+    <div
+      class="leadboard__item"
+      v-for="(item, index) in leadboard"
+      :key="item.email"
+    >
+      <div>{{ index }}</div>
       <div>{{ item.email }}</div>
       <div>{{ item.score }}</div>
     </div>
@@ -17,17 +21,31 @@
 <script>
 export default {
   data: () => ({
-    count: 0,
-    leadboard: null,
+    leadboard: null
   }),
   methods: {
     async getScore() {
-      this.leadboard = await this.$store.dispatch("getLeadboard");
-    },
+      const leadboard = await this.$store.dispatch("getLeadboard");
+
+      console.log(typeof leadboard);
+
+      const leaderboardArray = Object.keys(leadboard).map(i => leadboard[i]);
+      leaderboardArray.sort(function(a, b) {
+        return a.score - b.score;
+      });
+      this.leadboard = leaderboardArray;
+      // const data = await this.$store.dispatch("getLeadboard");
+      // const items = Object.entries(data).map(entry => ({
+      //   ...entry[1],
+      //   id: entry[0]
+      // }));
+
+      // this.leadboard = items; // but i would rename this.leaderboard to this.items
+    }
   },
   mounted() {
     this.getScore();
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
