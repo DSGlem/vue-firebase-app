@@ -1,14 +1,14 @@
 <template>
-  <div class="leadboard">
-    leadboard
-    <div class="leadboard__item">
+  <div class="leaderboard">
+    leaderboard
+    <div class="leaderboard__item">
       <div>Rank</div>
       <div>Username</div>
       <div>Score</div>
     </div>
     <div
-      class="leadboard__item"
-      v-for="(item, index) in leadboard"
+      class="leaderboard__item"
+      v-for="(item, index) in leaderboard"
       :key="item.email"
     >
       <div>{{ index }}</div>
@@ -21,26 +21,28 @@
 <script>
 export default {
   data: () => ({
-    leadboard: null
+    leaderboard: null
   }),
   methods: {
     async getScore() {
-      const leadboard = await this.$store.dispatch("getLeadboard");
+      const leaderboard = await this.$store.dispatch("getLeaderboard");
 
-      console.log(typeof leadboard);
+      console.log(typeof leaderboard);
 
-      const leaderboardArray = Object.keys(leadboard).map(i => leadboard[i]);
+      const leaderboardArray = Object.keys(leaderboard).map(
+        i => leaderboard[i]
+      );
       leaderboardArray.sort(function(a, b) {
         return a.score - b.score;
       });
-      this.leadboard = leaderboardArray;
-      // const data = await this.$store.dispatch("getLeadboard");
+      this.leaderboard = leaderboardArray;
+      // const data = await this.$store.dispatch("getLeaderboard");
       // const items = Object.entries(data).map(entry => ({
       //   ...entry[1],
       //   id: entry[0]
       // }));
 
-      // this.leadboard = items; // but i would rename this.leaderboard to this.items
+      // this.leaderboard = items; // but i would rename this.leaderboard to this.items
     }
   },
   mounted() {
@@ -49,10 +51,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.leadboard {
+.leaderboard {
   color: white;
 }
-.leadboard__item {
+.leaderboard__item {
   display: grid;
   grid-template: 1fr / auto 1fr auto;
   grid-gap: 2rem;

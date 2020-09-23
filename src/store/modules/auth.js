@@ -11,7 +11,7 @@ export default {
           .database()
           .ref(`/users/${uid}`)
           .once("value")
-          .then((user) => {
+          .then(user => {
             return user.val();
           });
       } catch (e) {
@@ -30,7 +30,7 @@ export default {
         country,
         address,
         postcode,
-        phone,
+        phone
       }
     ) {
       try {
@@ -49,7 +49,7 @@ export default {
             address: address,
             postcode: postcode,
             phone: phone,
-            best_score: 0,
+            best_score: 0
           });
       } catch (e) {
         console.log(e);
@@ -68,7 +68,7 @@ export default {
       const user = firebase.auth().currentUser;
       return user ? user.uid : null;
     },
-    async getLeadboard() {
+    async getLeaderboard() {
       return firebase
         .database()
         .ref("/score")
@@ -76,6 +76,6 @@ export default {
         .then(function(snapshot) {
           return snapshot.val();
         });
-    },
-  },
+    }
+  }
 };

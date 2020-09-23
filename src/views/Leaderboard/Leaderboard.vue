@@ -2,13 +2,13 @@
   <div
     class="bg-dark conatiner d-flex align-items-center justify-content-center"
   >
-    <Leadboard />
+    <Leaderboard />
   </div>
 </template>
 
 <script>
-import Leadboard from "@/components/Leadboard/Leadboard";
+import Leaderboard from "@/components/Leaderboard/Leaderboard";
 export default {
-  components: { Leadboard },
+  components: { Leaderboard }
 };
 </script>

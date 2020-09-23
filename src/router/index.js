@@ -9,32 +9,32 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../views/Challenge/Challenge.vue"),
+      component: () => import("../views/Challenge/Challenge.vue")
     },
     {
-      path: "/leadboard",
-      component: () => import("../views/Leadboard/Leadboard.vue"),
+      path: "/leaderboard",
+      component: () => import("../views/Leaderboard/Leaderboard.vue")
     },
     {
       path: "/challenge",
       meta: { auth: true },
-      component: () => import("../views/Challenge/Challenge.vue"),
+      component: () => import("../views/Challenge/Challenge.vue")
     },
     {
       path: "/SignIn",
-      component: () => import("../views/SignIn/SignIn.vue"),
+      component: () => import("../views/SignIn/SignIn.vue")
     },
     {
       path: "/SignUp",
-      component: () => import("../views/SignUp/SignUp.vue"),
-    },
-  ],
+      component: () => import("../views/SignUp/SignUp.vue")
+    }
+  ]
 });
 
 router.beforeEach((to, form, next) => {
   const currentUser = firebase.auth().currentUser;
   console.log(currentUser);
-  const requireAuth = to.matched.some((route) => route.meta.auth);
+  const requireAuth = to.matched.some(route => route.meta.auth);
   console.log(requireAuth);
   if (requireAuth && !currentUser) {
     next("/SignIn");
