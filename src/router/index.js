@@ -9,10 +9,11 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../views/Challenge/Challenge.vue")
+      component: () => import("../views/SignUp/SignUp.vue")
     },
     {
       path: "/leaderboard",
+      meta: { auth: true },
       component: () => import("../views/Leaderboard/Leaderboard.vue")
     },
     {
@@ -20,10 +21,10 @@ const router = new VueRouter({
       meta: { auth: true },
       component: () => import("../views/Challenge/Challenge.vue")
     },
-    {
-      path: "/SignIn",
-      component: () => import("../views/SignIn/SignIn.vue")
-    },
+    // {
+    //   path: "/SignIn",
+    //   component: () => import("../views/SignIn/SignIn.vue")
+    // },
     {
       path: "/SignUp",
       component: () => import("../views/SignUp/SignUp.vue")
@@ -37,7 +38,7 @@ router.beforeEach((to, form, next) => {
   const requireAuth = to.matched.some(route => route.meta.auth);
   console.log(requireAuth);
   if (requireAuth && !currentUser) {
-    next("/SignIn");
+    next("/SignUp");
   } else {
     next();
   }
